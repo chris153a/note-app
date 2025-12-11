@@ -1,0 +1,45 @@
+package demoapp.com.example.demoapp.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+import demoapp.com.example.demoapp.dao.NotesDao;
+import demoapp.com.example.demoapp.model.Note;
+
+@Service
+public class NoteServiceImpl implements NoteService {
+
+    @Autowired
+    private NotesDao notesDao;
+
+    @Override
+    public List<Note> getAllNotes() {
+        return notesDao.findAll();
+    }
+
+    @Override
+    public List<Note> getActiveNotes() {
+        return notesDao.findByActive(true);
+    }
+
+    @Override
+    public List<Note> getArchivedNotes() {
+        return notesDao.findByActive(false);
+    }
+
+    @Override
+    public List<Note> getNotesByCategoryName(String name) {
+        return notesDao.findByCategory_Name(name);
+    }
+
+    @Override
+    public Note createNote(Note note) {
+        return notesDao.save(note);
+    }
+
+    @Override
+    public void deleteNote(Integer id) {
+        notesDao.deleteById(id);
+    }
+}

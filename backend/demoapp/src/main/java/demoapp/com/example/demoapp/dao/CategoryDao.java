@@ -1,0 +1,8 @@
+package demoapp.com.example.demoapp.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import demoapp.com.example.demoapp.model.Category;
+
+public interface CategoryDao extends JpaRepository<Category, Long> {
+    Category findByName(String name);
+}

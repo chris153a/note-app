@@ -1,0 +1,31 @@
+package demoapp.com.example.demoapp.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+import demoapp.com.example.demoapp.model.Category;
+import demoapp.com.example.demoapp.repository.CategoryRepository;
+
+@Service
+public class CategoryServiceImpl implements CategoryService {
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Override
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
+    @Override
+    public Category createCategory(Category category) {
+        return categoryRepository.save(category);
+    }
+
+    @Override
+    public void deleteCategory(Long id) {
+        categoryRepository.deleteById(id);
+    }
+}

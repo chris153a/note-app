@@ -1,0 +1,46 @@
+package demoapp.com.example.demoapp.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "notes")
+public class Note {
+
+	 @Id
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
+	 
+	 private Integer id;
+	 
+	 @Column(nullable = false)
+	 private boolean active;
+	 
+	 @Column(nullable = false)
+	 private String message;
+	 
+	 public Note() {}
+	 
+	 public Note(boolean active, String message) {
+		super();
+		this.active = active;
+		this.message = message;
+	}
+
+	 public int getId() {
+		return id;
+	}
+	 public void setId(Integer id) {
+		 this.id = id;
+	 }
+	 public boolean isActive() {
+		 return active;
+	 }
+	 public void setActive(boolean active) {
+		 this.active = active;
+	 }
+	 public String getMessage() {
+		 return message;
+	 }
+	 public void setMessage(String message) {
+		 this.message = message;
+	 }
+}

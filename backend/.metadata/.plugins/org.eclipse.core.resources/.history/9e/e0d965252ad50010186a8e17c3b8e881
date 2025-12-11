@@ -1,0 +1,5 @@
+package demoapp.com.example.demoapp.service;
+
+public interface NoteService {
+
+}

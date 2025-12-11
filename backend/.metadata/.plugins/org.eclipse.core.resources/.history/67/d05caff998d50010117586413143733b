@@ -1,0 +1,50 @@
+package demoapp.com.example.demoapp.controller;
+
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
+import demoapp.com.example.demoapp.model.Note;
+import demoapp.com.example.demoapp.service.NoteService;
+
+@RestController
+@RequestMapping("/api/v1/notes")
+@CrossOrigin(origins = "http://localhost:3000")
+public class NotesController {
+
+    @Autowired
+    private NoteService noteService;
+
+    @GetMapping
+    public List<Note> getAll() {
+        return noteService.getAllNotes();
+    }
+
+    @GetMapping("/active")
+    public List<Note> getActive() {
+        return noteService.getActiveNotes();
+    }
+
+    @GetMapping("/archived")
+    public List<Note> getArchived() {
+        return noteService.getArchivedNotes();
+    }
+
+    @GetMapping
+    public List<Note> getAll(@RequestParam(value = "category", required = false) String category) {
+        if (category != null && !category.isEmpty()) {
+            return noteService.getNotesByCategoryName(category);
+        }
+        return noteService.getAllNotes();
+    }
+
+    @PostMapping
+    public Note create(@RequestBody Note note) {
+        return noteService.createNote(note);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+        noteService.deleteNote(id);
+    }
+}

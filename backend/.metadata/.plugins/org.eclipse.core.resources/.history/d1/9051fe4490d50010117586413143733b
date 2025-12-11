@@ -1,0 +1,49 @@
+package demoapp.com.example.demoapp.service;
+
+import demoapp.com.example.demoapp.dao.NotesDao;
+import demoapp.com.example.demoapp.model.Note;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class NoteServiceImpl implements NoteService {
+
+    @Autowired
+    private NotesDao notesDao;
+
+    @Override
+    public List<Note> getAllNotes() {
+        return notesDao.findAll();
+    }
+
+    @Override
+    public List<Note> getActiveNotes() {
+        return notesDao.findByActive(true);
+    }
+
+    @Override
+    public List<Note> getArchivedNotes() {
+        return notesDao.findByActive(false);
+    }
+
+    @Override
+    public Note createNote(Note note) {
+        return notesDao.save(note);
+    }
+
+    @Override
+    public Note updateNote(Integer id, Note updated) {
+        return notesDao.findById(id).map(note -> {
+            note.setActive(updated.isActive());
+            note.setMessage(updated.getMessage());
+            return notesDao.save(note);
+        }).orElseThrow(() -> new RuntimeException("Note not found"));
+    }
+
+    @Override
+    public void deleteNote(Integer id) {
+        notesDao.deleteById(id);
+    }
+}

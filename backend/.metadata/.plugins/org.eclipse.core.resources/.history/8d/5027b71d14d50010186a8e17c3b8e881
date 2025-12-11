@@ -1,0 +1,7 @@
+package demoapp.com.example.demoapp.repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import demoapp.com.example.demoapp.model.Note;
+
+public interface NoterRepository {
+
+}

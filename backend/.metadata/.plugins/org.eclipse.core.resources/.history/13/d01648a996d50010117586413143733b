@@ -1,0 +1,30 @@
+package demoapp.com.example.demoapp.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+import demoapp.com.example.demoapp.dao.CategoryDao;
+import demoapp.com.example.demoapp.model.Category;
+
+@Service
+public class CategoryServiceImpl implements CategoryService {
+
+    @Autowired
+    private CategoryDao categoryDao;
+
+    @Override
+    public List<Category> getAllCategories() {
+        return categoryDao.findAll();
+    }
+
+    @Override
+    public Category createCategory(Category category) {
+        return categoryDao.save(category);
+    }
+
+    @Override
+    public void deleteCategory(Integer id) {
+        categoryDao.deleteById(id);
+    }
+}

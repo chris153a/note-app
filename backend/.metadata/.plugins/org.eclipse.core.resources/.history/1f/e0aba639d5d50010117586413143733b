@@ -1,0 +1,13 @@
+package demoapp.com.example.demoapp.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+import demoapp.com.example.demoapp.model.Note;
+
+public interface NotesDao extends JpaRepository<Note, Integer> {
+
+    List<Note> findByActive(boolean active);
+    List<Note> findByCategory_Id(Long id);
+    List<Note> findByCategory_Name(String name);
+    List<Note> findByCategory_Id(Integer id);
+}

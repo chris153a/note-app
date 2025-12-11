@@ -1,0 +1,13 @@
+package demoapp.com.example.demoapp.service;
+import demoapp.com.example.demoapp.model.Note;
+import java.util.List;
+
+public interface NoteService {
+    List<Note> getAllNotes();
+    List<Note> getActiveNotes();
+    List<Note> getArchivedNotes();
+    List<Note> getNotesByCategory(String category);
+    Note createNote(Note note);
+    Note updateNote(Integer id, Note note);
+    void deleteNote(Integer id);
+}

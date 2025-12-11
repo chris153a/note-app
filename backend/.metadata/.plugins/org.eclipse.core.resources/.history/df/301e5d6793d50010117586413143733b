@@ -1,0 +1,7 @@
+package demoapp.com.example.demoapp.dao;
+
+import demoapp.com.example.demoapp.model.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
+}

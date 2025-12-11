@@ -1,0 +1,11 @@
+package demoapp.com.example.demoapp.service;
+
+import java.util.List;
+import demoapp.com.example.demoapp.model.Category;
+
+public interface CategoryService {
+
+    List<Category> getAllCategories();
+    Category createCategory(Category category);
+    void deleteCategory(Integer id);
+}

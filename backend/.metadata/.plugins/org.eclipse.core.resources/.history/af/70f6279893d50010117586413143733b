@@ -1,0 +1,23 @@
+@RestController
+@RequestMapping("/api/v1/categories")
+@CrossOrigin(origins = "http://localhost:3000")
+public class CategoryController {
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @GetMapping
+    public List<Category> getAll() {
+        return categoryService.getAllCategories();
+    }
+
+    @PostMapping
+    public Category create(@RequestBody Category category) {
+        return categoryService.createCategory(category);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+        categoryService.deleteCategory(id);
+    }
+}

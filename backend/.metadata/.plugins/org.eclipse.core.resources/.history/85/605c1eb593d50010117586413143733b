@@ -1,0 +1,31 @@
+import java.util.List;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+import demoapp.com.example.demoapp.model.Category;
+import demoapp.com.example.demoapp.service.CategoryService;
+
+@RestController
+@RequestMapping("/api/v1/categories")
+@CrossOrigin(origins = "http://localhost:3000")
+public class CategoryController {
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @GetMapping
+    public List<Category> getAll() {
+        return categoryService.getAllCategories();
+    }
+
+    @PostMapping
+    public Category create(@RequestBody Category category) {
+        return categoryService.createCategory(category);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+        categoryService.deleteCategory(id);
+    }
+}
